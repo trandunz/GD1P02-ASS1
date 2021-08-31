@@ -15,15 +15,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="CDeQue.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="CNode.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="CSingleLinkList.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="CQuickSort.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -32,15 +23,6 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="CDeQue.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="CNode.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="CSingleLinkList.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="CQuickSort.h">
       <Filter>Header Files</Filter>
     </ClInclude>

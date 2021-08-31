@@ -1,42 +1,42 @@
+// Local Includes
 #include "CDeQue.h"
-#include <iostream>
+
 
 CDeQue::CDeQue()
 {
-    m_isStack = true;
-    
+    m_bIsStack = true;
 }
 
 CDeQue::~CDeQue()
 {
     std::cout << "Destructing Queue" << std::endl << std::endl;
-    while (m_nNodeCount > 0 && m_CfirstNode != nullptr)
+    while (m_iNodeCount > 0 && m_firstNode != nullptr)
     {
         Dequeue();
     }
 }
 
-void CDeQue::Enqueue(int _iData)
+void CDeQue::Enqueue(int _data)
 {
-    insertAtTheEnd(_iData);
-    std::cout << "Enqueue'd (Frt::Node " << _iData << ")" << std::endl;
+    insertAtTheEnd(_data);
+    std::cout << "Enqueue'd (Frt::Node " << _data << ")" << std::endl;
 }
 
-void CDeQue::Enqueue_Back(int _iData)
+void CDeQue::Enqueue_Back(int _data)
 {
-    insertAtTheEnd(_iData);
-    std::cout << "Enqueue'd From Back (Frt::Node " << _iData << ")" << std::endl;
+    insertAtTheEnd(_data);
+    std::cout << "Enqueue'd From Back (Frt::Node " << _data << ")" << std::endl;
 }
 
-void CDeQue::Enqueue_Front(int _iData)
+void CDeQue::Enqueue_Front(int _data)
 {
-    insertAtTheFront(_iData);
-    std::cout << "Enqueue'd From Front (Frt::Node " << _iData << ")" << std::endl;
+    insertAtTheFront(_data);
+    std::cout << "Enqueue'd From Front (Frt::Node " << _data << ")" << std::endl;
 }
 
-void CDeQue::Dequeue(int _iData)
+void CDeQue::Dequeue(int _data)
 {
-    switch (m_nNodeCount)
+    switch (m_iNodeCount)
     {
     case 0:
     {
@@ -45,13 +45,13 @@ void CDeQue::Dequeue(int _iData)
     }
     default:
     {
-        while (m_CfirstNode->getData() != _iData)
+        while (m_firstNode->GetData() != _data)
         {
-            std::cout << "Force Dequeue'd (Frt::Node " << m_CfirstNode->getData() << ")" << std::endl;
+            std::cout << "Force Dequeue'd (Frt::Node " << m_firstNode->GetData() << ")" << std::endl;
             deleteFromTheFront();
 
         }
-        std::cout << "Dequeue'd (Frt::Node " << _iData << ")" << std::endl;
+        std::cout << "Dequeue'd (Frt::Node " << _data << ")" << std::endl;
         deleteFromTheFront();
         break;
     }
@@ -60,7 +60,7 @@ void CDeQue::Dequeue(int _iData)
 
 void CDeQue::Dequeue()
 {
-    switch (m_nNodeCount)
+    switch (m_iNodeCount)
     {
     case 0:
     {
@@ -69,21 +69,21 @@ void CDeQue::Dequeue()
     }
     default:
     {
-        std::cout << "Dequeue'd (Frt::Node " << m_CfirstNode->getData() << ")" << std::endl;
+        std::cout << "Dequeue'd (Frt::Node " << m_firstNode->GetData() << ")" << std::endl;
         deleteFromTheFront();
         break;
     }
     }
 }
 
-void CDeQue::Dequeue_Back(int _iData)
+void CDeQue::Dequeue_Back(int _data)
 {
     
 }
 
 void CDeQue::Dequeue_Back()
 {
-    switch (m_nNodeCount)
+    switch (m_iNodeCount)
     {
     case 0:
     {
@@ -92,16 +92,24 @@ void CDeQue::Dequeue_Back()
     }
     default:
     {
-        std::cout << "Dequeue'd From Back (Frt::Node " << m_CfirstNode->getData() << ")" << std::endl;
+        CNode* CTemp = m_firstNode;
+
+        while (CTemp->GetNextNode() != nullptr)
+        {
+            CTemp = CTemp->GetNextNode();
+        }
+        std::cout << "Dequeue'd From Back (Frt::Node " << CTemp->GetData() << ")" << std::endl;
         deleteFromTheEnd();
+
+        CTemp = nullptr;
         break;
     }
     }
 }
 
-void CDeQue::Dequeue_Front(int _iData)
+void CDeQue::Dequeue_Front(int _data)
 {
-    switch (m_nNodeCount)
+    switch (m_iNodeCount)
     {
     case 0:
     {
@@ -110,13 +118,13 @@ void CDeQue::Dequeue_Front(int _iData)
     }
     default:
     {
-        while (m_CfirstNode->getData() != _iData)
+        while (m_firstNode->GetData() != _data)
         {
-            std::cout << "Force Dequeue'd (Frt::Node " << m_CfirstNode->getData() << ")" << std::endl;
+            std::cout << "Force Dequeue'd (Frt::Node " << m_firstNode->GetData() << ")" << std::endl;
             deleteFromTheFront();
 
         }
-        std::cout << "Dequeue'd From Front (Frt::Node " << _iData << ")" << std::endl;
+        std::cout << "Dequeue'd From Front (Frt::Node " << _data << ")" << std::endl;
         deleteFromTheFront();
         break;
     }
@@ -125,7 +133,7 @@ void CDeQue::Dequeue_Front(int _iData)
 
 void CDeQue::Dequeue_Front()
 {
-    switch (m_nNodeCount)
+    switch (m_iNodeCount)
     {
     case 0:
     {
@@ -134,7 +142,7 @@ void CDeQue::Dequeue_Front()
     }
     default:
     {
-        std::cout << "Dequeue'd From Front (Frt::Node " << m_CfirstNode->getData() << ")" << std::endl;
+        std::cout << "Dequeue'd From Front (Frt::Node " << m_firstNode->GetData() << ")" << std::endl;
         deleteFromTheFront();
         break;
     }
@@ -143,7 +151,7 @@ void CDeQue::Dequeue_Front()
 
 void CDeQue::Peek()
 {
-    switch (m_nNodeCount)
+    switch (m_iNodeCount)
     {
     case 0:
     {
@@ -152,7 +160,7 @@ void CDeQue::Peek()
     }
     default:
     {
-        std::cout << "Peak Success (Frt::Node " << m_CfirstNode->getData() << ")" << std::endl;
+        std::cout << "Peak Success (Frt::Node " << m_firstNode->GetData() << ")" << std::endl;
         break;
     }
     }
@@ -160,7 +168,7 @@ void CDeQue::Peek()
 
 void CDeQue::Peek_Front()
 {
-	switch (m_nNodeCount)
+	switch (m_iNodeCount)
 	{
 	case 0:
 	{
@@ -169,7 +177,7 @@ void CDeQue::Peek_Front()
 	}
 	default:
 	{
-		std::cout << "Peak Success (Frt::Node " << m_CfirstNode->getData() << ")" << std::endl;
+		std::cout << "Peak Success (Frt::Node " << m_firstNode->GetData() << ")" << std::endl;
 		break;
 	}
 	}
@@ -177,7 +185,7 @@ void CDeQue::Peek_Front()
 
 void CDeQue::Peek_Back()
 {
-	switch (m_nNodeCount)
+	switch (m_iNodeCount)
 	{
 	case 0:
 	{
@@ -186,13 +194,13 @@ void CDeQue::Peek_Back()
 	}
 	default:
 	{
-		CNode* CTemp = m_CfirstNode;
+		CNode* CTemp = m_firstNode;
 
-		while (CTemp->getNextNode() != nullptr)
+		while (CTemp->GetNextNode() != nullptr)
 		{
-			CTemp = CTemp->getNextNode();
+			CTemp = CTemp->GetNextNode();
 		}
-		std::cout << "Peak Success (Frt::Node " << CTemp->getData() << ")" << std::endl;
+		std::cout << "Peak Success (Frt::Node " << CTemp->GetData() << ")" << std::endl;
 
 		CTemp = nullptr;
 
@@ -201,9 +209,36 @@ void CDeQue::Peek_Back()
 	}
 }
 
+void CDeQue::Display()
+{
+    switch (m_iNodeCount)
+    {
+    case 0:
+    {
+        std::cout << "Display Failed (Dis::No Nodes Found)" << std::endl << std::endl;
+        break;
+    }
+    default:
+    {
+        CNode* CTemp = m_firstNode;
+        for (int i = 0; i < m_iNodeCount; i++)
+        {
+            std::cout << CTemp->GetData() << std::endl;
+            if (CTemp->GetNextNode() != nullptr)
+            {
+                CTemp = CTemp->GetNextNode();
+            }
+        }
+        CTemp = nullptr;
+        std::cout << "Display Successful" << std::endl << std::endl;
+        break;
+    }
+    }
+}
+
 bool CDeQue::IsEmpty()
 {
-    if (m_nNodeCount == 0)
+    if (m_iNodeCount == 0)
     {
         return true;
     }

@@ -1,21 +1,27 @@
+#pragma once
 #ifndef _NODE_H__
 #define _NODE_H__
 
+// Non-Local Includes
+#include <iostream>
+
 class CNode
 {
-protected:
-	int m_nData;
-	CNode* m_CNextNode;
-	CNode* m_CPrevNode;
 public:
 	CNode();
-	/*CNode(CNode* _firstNode);*/
 	~CNode();
-	void setData(int iData);
-	int getData() const;
-	void setNextNode(CNode* nextNode);
-	void setPrevNode(CNode* prevNode);
-	CNode* getNextNode() const;
-};
 
+	void SetData(int _data);
+	int GetData();
+
+	void SetNextNode(CNode* _nextNode);
+	CNode* GetNextNode();
+
+	void SetPrevNode(CNode* _prevNode);
+
+protected:
+	int m_iData;
+	CNode* m_NextNode;
+	CNode* m_PrevNode;
+};
 #endif

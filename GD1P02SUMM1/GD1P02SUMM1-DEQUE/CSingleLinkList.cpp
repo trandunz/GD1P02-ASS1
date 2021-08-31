@@ -1,73 +1,85 @@
-#include <iostream>
 #include "CSingleLinkList.h"
 
 CSingleLinkList::CSingleLinkList()
 {
-	m_isStack = false;
-	m_nNodeCount = 0;
-	m_CfirstNode = nullptr;
+	m_bIsStack = false;
+	m_iNodeCount = 0;
+	m_firstNode = nullptr;
 }
 
 CSingleLinkList::~CSingleLinkList()
 {
-	m_CfirstNode = nullptr;
-	if (!m_isStack)
+	m_firstNode = nullptr;
+
+	// If Link List Is Not A Stack/Que (They Have There Own Cleanup)
+	if (!m_bIsStack)
 	{
+		// Delete EveryNode In The Link List
 		std::cout << "Destructing LinkList" << std::endl;
-		while (m_nNodeCount > 0)
+		while (m_iNodeCount > 0)
 		{
 			deleteFromTheEnd();
 		}
 	}
-	
-	
 }
 
 void CSingleLinkList::insertAtTheFront(int _data)
 {
-	switch (m_nNodeCount)
+	switch (m_iNodeCount)
 	{
 	case 0:
 	{
-		m_nNodeCount++;
+		m_iNodeCount++;
 		CNode* CNewNode = new CNode;
-		CNewNode->setNextNode(m_CfirstNode);
-		CNewNode->setData(_data);
-		m_CfirstNode = CNewNode;
-		if (!m_isStack)
+
+		CNewNode->SetNextNode(m_firstNode);
+
+		CNewNode->SetData(_data);
+
+		m_firstNode = CNewNode;
+
+		if (!m_bIsStack)
 		{
 			std::cout << "Inserted At Start (Frt::No Nodes Found)" << std::endl;
 		}
+
 		break;
 	}
 	default:
-		m_nNodeCount++;
+		m_iNodeCount++;
 		CNode* CNewNode = new CNode;
-		CNewNode->setNextNode(m_CfirstNode);
-		CNewNode->setData(_data);
-		m_CfirstNode = CNewNode;
-		if (!m_isStack)
+
+		CNewNode->SetNextNode(m_firstNode);
+
+		CNewNode->SetData(_data);
+
+		m_firstNode = CNewNode;
+
+		if (!m_bIsStack)
 		{
-			std::cout << "Inserted at start (Frt::Node " << CNewNode->getData() << ")" << std::endl;
+			std::cout << "Inserted at start (Frt::Node " << CNewNode->GetData() << ")" << std::endl;
 		}
 		
 		break;
 	}
-	
 }
 
 void CSingleLinkList::insertInTheMiddle(int _data)
 {
-	switch (m_nNodeCount)
+	switch (m_iNodeCount)
 	{
 	case 0:
 	{
-		m_nNodeCount++;
+		m_iNodeCount++;
 		CNode* CNewNode = new CNode;
-		CNewNode->setNextNode(m_CfirstNode);
-		CNewNode->setData(_data);
-		m_CfirstNode = CNewNode;
-		if (!m_isStack)
+
+		CNewNode->SetNextNode(m_firstNode);
+
+		CNewNode->SetData(_data);
+
+		m_firstNode = CNewNode;
+
+		if (!m_bIsStack)
 		{
 			std::cout << "Inserted At Start (Mid::No Nodes Found)" << std::endl;
 		}
@@ -76,21 +88,25 @@ void CSingleLinkList::insertInTheMiddle(int _data)
 	}
 	case 1:
 	{
-		m_nNodeCount++;
-		CNode* CTemp = m_CfirstNode;
-		for (int i = 0; i < (m_nNodeCount / 2) - 1; i++)
+		m_iNodeCount++;
+		CNode* CTemp = m_firstNode;
+
+		for (int i = 0; i < (m_iNodeCount / 2) - 1; i++)
 		{
-			if (CTemp->getNextNode() != nullptr)
+			if (CTemp->GetNextNode() != nullptr)
 			{
-				CTemp = CTemp->getNextNode();
+				CTemp = CTemp->GetNextNode();
 			}
 		}
+
 		CNode* CNewNode = new CNode;
-		CNewNode->setNextNode(CTemp->getNextNode());
-		CTemp->setNextNode(CNewNode);
+
+		CNewNode->SetNextNode(CTemp->GetNextNode());
+		CTemp->SetNextNode(CNewNode);
 
 		CTemp = nullptr;
-		if (!m_isStack)
+
+		if (!m_bIsStack)
 		{
 			std::cout << "Inserted At End (Mid::Only One Node)" << std::endl;
 		}
@@ -98,23 +114,27 @@ void CSingleLinkList::insertInTheMiddle(int _data)
 		break;
 	}
 	default:
-		m_nNodeCount++;
-		CNode* CTemp = m_CfirstNode;
-		for (int i = 0; i < (m_nNodeCount / 2) - 1; i++)
+		m_iNodeCount++;
+		CNode* CTemp = m_firstNode;
+
+		for (int i = 0; i < (m_iNodeCount / 2) - 1; i++)
 		{
-			if (CTemp->getNextNode() != nullptr)
+			if (CTemp->GetNextNode() != nullptr)
 			{
-				CTemp = CTemp->getNextNode();
+				CTemp = CTemp->GetNextNode();
 			}
 		}
+
 		CNode* CNewNode = new CNode;
-		CNewNode->setNextNode(CTemp->getNextNode());
-		CTemp->setNextNode(CNewNode);
+
+		CNewNode->SetNextNode(CTemp->GetNextNode());
+		CTemp->SetNextNode(CNewNode);
 
 		CTemp = nullptr;
-		if (!m_isStack)
+
+		if (!m_bIsStack)
 		{
-			std::cout << "Inserted In The Middle (Mid::Node " << CNewNode->getData() << ")" << std::endl;
+			std::cout << "Inserted In The Middle (Mid::Node " << CNewNode->GetData() << ")" << std::endl;
 		}
 		
 		break;
@@ -124,16 +144,20 @@ void CSingleLinkList::insertInTheMiddle(int _data)
 
 void CSingleLinkList::insertAtTheEnd(int _data)
 {
-	switch (m_nNodeCount)
+	switch (m_iNodeCount)
 	{
 	case 0:
 	{
-		m_nNodeCount++;
+		m_iNodeCount++;
 		CNode* CNewNode = new CNode;
-		CNewNode->setNextNode(m_CfirstNode);
-		CNewNode->setData(_data);
-		m_CfirstNode = CNewNode;
-		if (!m_isStack)
+
+		CNewNode->SetNextNode(m_firstNode);
+
+		CNewNode->SetData(_data);
+
+		m_firstNode = CNewNode;
+
+		if (!m_bIsStack)
 		{
 			std::cout << "Inserted At Start (End::No Nodes Found)" << std::endl;
 		}
@@ -141,22 +165,26 @@ void CSingleLinkList::insertAtTheEnd(int _data)
 		break;
 	}
 	default:
-		m_nNodeCount++;
-
+		m_iNodeCount++;
 		CNode* CNewNode = new CNode;
-		CNewNode->setData(_data);
-		CNode* CTemp = m_CfirstNode;
 
-		while (CTemp->getNextNode() != nullptr)
+		CNewNode->SetData(_data);
+
+		CNode* CTemp = m_firstNode;
+
+		while (CTemp->GetNextNode() != nullptr)
 		{
-			CTemp = CTemp->getNextNode();
+			CTemp = CTemp->GetNextNode();
 
 		}
-		CTemp->setNextNode(CNewNode);
+
+		CTemp->SetNextNode(CNewNode);
+
 		CTemp = nullptr;
-		if (!m_isStack)
+
+		if (!m_bIsStack)
 		{
-			std::cout << "Inserted At End (End::Node " << CNewNode->getData() << ")" << std::endl;
+			std::cout << "Inserted At End (End::Node " << CNewNode->GetData() << ")" << std::endl;
 		}
 		
 		break;
@@ -165,11 +193,11 @@ void CSingleLinkList::insertAtTheEnd(int _data)
 
 void CSingleLinkList::deleteFromTheFront()
 {
-	switch (m_nNodeCount)
+	switch (m_iNodeCount)
 	{
 	case 0:
 	{
-		if (!m_isStack)
+		if (!m_bIsStack)
 		{
 			std::cout << "(Frt::No Nodes Found)" << std::endl;
 		}
@@ -178,32 +206,35 @@ void CSingleLinkList::deleteFromTheFront()
 	}
 	case 1:
 	{
-		m_CfirstNode->setNextNode(nullptr);
-		delete m_CfirstNode;
-		m_CfirstNode = nullptr;
-		if (!m_isStack)
+		m_firstNode->SetNextNode(nullptr);
+		delete m_firstNode;
+		m_firstNode = nullptr;
+		if (!m_bIsStack)
 		{
 			std::cout << "Deleted First Node (Frt::Only One Node)" << std::endl;
 		}
 		
-		m_nNodeCount--;
+		m_iNodeCount--;
+
 		break;
 	}
 	default:
-		CNode* CTemp = m_CfirstNode;
-		CNode* CSuperTemp = m_CfirstNode;
-		CTemp = CTemp->getNextNode();
-		m_CfirstNode = CTemp;
-		CSuperTemp->setNextNode(nullptr);
-		if (!m_isStack)
+		CNode* CTemp = m_firstNode;
+		CNode* CSuperTemp = m_firstNode;
+		CTemp = CTemp->GetNextNode();
+		m_firstNode = CTemp;
+		CSuperTemp->SetNextNode(nullptr);
+		if (!m_bIsStack)
 		{
-			std::cout << "Deleted First Node (Frt::Node " << CSuperTemp->getData() << ")" << std::endl;
+			std::cout << "Deleted First Node (Frt::Node " << CSuperTemp->GetData() << ")" << std::endl;
 		}
 		
 		delete CSuperTemp;
 		CSuperTemp = nullptr;
 		CTemp = nullptr;
-		m_nNodeCount--;
+
+		m_iNodeCount--;
+
 		break;
 	}
 	
@@ -211,11 +242,11 @@ void CSingleLinkList::deleteFromTheFront()
 
 void CSingleLinkList::deleteFromTheMiddle(int _data)
 {
-	switch (m_nNodeCount)
+	switch (m_iNodeCount)
 	{
 	case 0:
 	{
-		if (!m_isStack)
+		if (!m_bIsStack)
 		{
 			std::cout << "(Mid::No Nodes Found)" << std::endl;
 		}
@@ -224,70 +255,75 @@ void CSingleLinkList::deleteFromTheMiddle(int _data)
 	}
 	case 1:
 	{
-		m_CfirstNode->setNextNode(nullptr);
-		delete m_CfirstNode;
-		m_CfirstNode = nullptr;
-		if (!m_isStack)
+		m_firstNode->SetNextNode(nullptr);
+		delete m_firstNode;
+		m_firstNode = nullptr;
+		if (!m_bIsStack)
 		{
 			std::cout << "Deleted Node (" << _data << ") (Del::Only One Node)" << std::endl;
 		}
 
-		m_nNodeCount--;
+		m_iNodeCount--;
+
 		break;
 	}
 	case 2:
 	{
-		CNode* CTemp = m_CfirstNode;
+		CNode* CTemp = m_firstNode;
 
-		while (CTemp->getNextNode()->getNextNode() != nullptr)
+		while (CTemp->GetNextNode()->GetNextNode() != nullptr)
 		{
-			CTemp = CTemp->getNextNode();
+			CTemp = CTemp->GetNextNode();
 		}
 		CNode* CBeforeDelete = CTemp;
-		CTemp = CBeforeDelete->getNextNode();
+		CTemp = CBeforeDelete->GetNextNode();
 		delete CTemp;
 
-		CBeforeDelete->setNextNode(nullptr);
+		CBeforeDelete->SetNextNode(nullptr);
 		CBeforeDelete = nullptr;
 		CTemp = nullptr;
-		if (!m_isStack)
+		if (!m_bIsStack)
 		{
 			std::cout << "Deleted End Node (Mid::Only Two Nodes)" << std::endl;
 		}
 		
-		m_nNodeCount--;
+		m_iNodeCount--;
+
 		break;
 	}
 	default:
-		m_nNodeCount--;
-		m_CfirstNode->setNextNode(m_CfirstNode->getNextNode()->getNextNode());
-		CNode* CTemp = m_CfirstNode;
-		for (int i = 0; i < (m_nNodeCount / 2) - 1; i++)
+		
+		m_firstNode->SetNextNode(m_firstNode->GetNextNode()->GetNextNode());
+		CNode* CTemp = m_firstNode;
+		for (int i = 0; i < (m_iNodeCount / 2) - 1; i++)
 		{
-			if (CTemp->getNextNode() != nullptr)
+			if (CTemp->GetNextNode() != nullptr)
 			{
-				CTemp = CTemp->getNextNode();
+				CTemp = CTemp->GetNextNode();
 			}
 		}
-		CTemp->setNextNode(nullptr);
-		if (!m_isStack)
+		CTemp->SetNextNode(nullptr);
+		if (!m_bIsStack)
 		{
-			std::cout << "Deleted Middle Node (Mid::Node " << CTemp->getData() << ")" << std::endl;
+			std::cout << "Deleted Middle Node (Mid::Node " << CTemp->GetData() << ")" << std::endl;
 		}
 		
 		delete CTemp;
 		CTemp = nullptr;
+
+		m_iNodeCount--;
+
 		break;
 	}
 }
 
 void CSingleLinkList::deleteFromTheEnd()
 {
-	switch (m_nNodeCount)
+	switch (m_iNodeCount)
 	{
 	case 0:
 	{
-		if (!m_isStack)
+		if (!m_bIsStack)
 		{
 			std::cout << "(End::No Nodes Found)" << std::endl;
 		}
@@ -296,39 +332,40 @@ void CSingleLinkList::deleteFromTheEnd()
 	}
 	case 1:
 	{
-		m_CfirstNode->setNextNode(nullptr);
-		delete m_CfirstNode;
-		m_CfirstNode = nullptr;
-		if (!m_isStack)
+		m_firstNode->SetNextNode(nullptr);
+		delete m_firstNode;
+		m_firstNode = nullptr;
+		if (!m_bIsStack)
 		{
 			std::cout << "Deleted First Node (End::Only One Node)" << std::endl;
 		}
 		
-		m_nNodeCount--;
+		m_iNodeCount--;
+
 		break;
 	}
 	default:
-		CNode* CTemp = m_CfirstNode;
+		CNode* CTemp = m_firstNode;
 
-		while (CTemp->getNextNode()->getNextNode() != nullptr)
+		while (CTemp->GetNextNode()->GetNextNode() != nullptr)
 		{
-			CTemp = CTemp->getNextNode();
+			CTemp = CTemp->GetNextNode();
 		}
 		CNode* CBeforeDelete = CTemp;
-		CTemp = CBeforeDelete->getNextNode();
-		if (!m_isStack)
+		CTemp = CBeforeDelete->GetNextNode();
+		if (!m_bIsStack)
 		{
-			std::cout << "Deleted End Node (End::Node " << CTemp->getData() << ")" << std::endl;
+			std::cout << "Deleted End Node (End::Node " << CTemp->GetData() << ")" << std::endl;
 		}
 		
 		delete CTemp;
 
-		CBeforeDelete->setNextNode(nullptr);
+		CBeforeDelete->SetNextNode(nullptr);
 		CBeforeDelete = nullptr;
 		CTemp = nullptr;
-
 		
-		m_nNodeCount--;
+		m_iNodeCount--;
+
 		break;
 	}
 	
@@ -338,78 +375,75 @@ void CSingleLinkList::Delete(int _data)
 {
 	if (search(_data))
 	{
-		CNode* CTemp = m_CfirstNode;
+		CNode* CTemp = m_firstNode;
 
-		switch (m_nNodeCount)
+		switch (m_iNodeCount)
 		{
 		case 1:
 		{
-			m_CfirstNode->setNextNode(nullptr);
-			delete m_CfirstNode;
-			m_CfirstNode = nullptr;
-			if (!m_isStack)
+			m_firstNode->SetNextNode(nullptr);
+			delete m_firstNode;
+			m_firstNode = nullptr;
+			if (!m_bIsStack)
 			{
 				std::cout << "Deleted Node (" << _data << ") (Del::Only One Node)" << std::endl;
 			}
 			
-			m_nNodeCount--;
+			m_iNodeCount--;
 			break;
 		}
 		default:
 		{
-			if (CTemp->getData() == _data)
+			if (CTemp->GetData() == _data)
 			{
-				m_CfirstNode = CTemp->getNextNode();
-				CTemp->setNextNode(nullptr);
+				m_firstNode = CTemp->GetNextNode();
+				CTemp->SetNextNode(nullptr);
 				delete CTemp;
 				CTemp = nullptr;
-				if (!m_isStack)
+				if (!m_bIsStack)
 				{
 					std::cout << "Deleted Node (" << _data << ")" << std::endl;
 				}
 				
-				m_nNodeCount--;
+				m_iNodeCount--;
 			}
 			else
 			{
-				while (CTemp->getNextNode()->getData() != _data && CTemp->getNextNode() != nullptr)
+				while (CTemp->GetNextNode()->GetData() != _data && CTemp->GetNextNode() != nullptr)
 				{
-					CTemp = CTemp->getNextNode();
+					CTemp = CTemp->GetNextNode();
 				}
 				CNode* CBeforeDelete = CTemp;
 
-				CTemp = CTemp->getNextNode()->getNextNode();
+				CTemp = CTemp->GetNextNode()->GetNextNode();
 
-				CBeforeDelete->getNextNode()->setNextNode(nullptr);
-				delete CBeforeDelete->getNextNode();
+				CBeforeDelete->GetNextNode()->SetNextNode(nullptr);
+				delete CBeforeDelete->GetNextNode();
 
-				CBeforeDelete->setNextNode(CTemp);
+				CBeforeDelete->SetNextNode(CTemp);
 
 				CBeforeDelete = nullptr;
 				CTemp = nullptr;
-				if (!m_isStack)
+				if (!m_bIsStack)
 				{
 					std::cout << "Deleted Node (" << _data << ")" << std::endl;
 				}
 				
-				m_nNodeCount--;
+				m_iNodeCount--;
 			}
-		}
 			break;
 		}
-		
-
-		
+		}
 	}
 }
 
 bool CSingleLinkList::search(int _data)
 {
-	switch (m_nNodeCount)
+	switch (m_iNodeCount)
 	{
 	case 0:
 	{
-		if (!m_isStack)
+		if (!m_bIsStack)
 		{
 			std::cout << "Search Failed (Sch::No Nodes Found)" << std::endl;
 		}
@@ -419,15 +453,15 @@ bool CSingleLinkList::search(int _data)
 	}
 	default:
 	{
-		CNode* CTemp = m_CfirstNode;
-		while (CTemp->getData() != _data && CTemp->getNextNode() != nullptr)
+		CNode* CTemp = m_firstNode;
+		while (CTemp->GetData() != _data && CTemp->GetNextNode() != nullptr)
 		{
-			CTemp = CTemp->getNextNode();
+			CTemp = CTemp->GetNextNode();
 		}
 
-		if (CTemp->getData() == _data)
+		if (CTemp->GetData() == _data)
 		{
-			if (!m_isStack)
+			if (!m_bIsStack)
 			{
 				std::cout << "Search Successful (Sch::Found Node " << _data << ")" << std::endl;
 			}
@@ -438,22 +472,22 @@ bool CSingleLinkList::search(int _data)
 		}
 		else
 		{
-			if (!m_isStack)
+			if (!m_bIsStack)
 			{
-				std::cout << "Search Failed (No Node With Matching Data (" << CTemp->getData() << "))" << std::endl;
+				std::cout << "Search Failed (No Node With Matching Data (" << CTemp->GetData() << "))" << std::endl;
 			}
 			
 			CTemp = nullptr;
 			return(false);
 		}
-	}
 		break;
+	}
 	}
 }
 
 void CSingleLinkList::display()
 {
-	switch (m_nNodeCount)
+	switch (m_iNodeCount)
 	{
 	case 0:
 	{
@@ -462,19 +496,19 @@ void CSingleLinkList::display()
 	}
 	default:
 	{
-		CNode* CTemp = m_CfirstNode;
-		for (int i = 0; i < m_nNodeCount; i++)
+		CNode* CTemp = m_firstNode;
+		for (int i = 0; i < m_iNodeCount; i++)
 		{
-			std::cout << CTemp->getData() << std::endl;
-			if (CTemp->getNextNode() != nullptr)
+			std::cout << CTemp->GetData() << std::endl;
+			if (CTemp->GetNextNode() != nullptr)
 			{
-				CTemp = CTemp->getNextNode();
+				CTemp = CTemp->GetNextNode();
 			}
 		}
 		CTemp = nullptr;
 		std::cout << "Display Successful" << std::endl << std::endl;
+
 		break;
 	}
 	}
-	
 }

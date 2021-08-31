@@ -124,16 +124,10 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="CDeQue.cpp" />
-    <ClCompile Include="CNode.cpp" />
-    <ClCompile Include="CSingleLinkList.cpp" />
     <ClCompile Include="CQuickSort.cpp" />
     <ClCompile Include="Main.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="CDeQue.h" />
-    <ClInclude Include="CNode.h" />
-    <ClInclude Include="CSingleLinkList.h" />
     <ClInclude Include="CQuickSort.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

@@ -2,27 +2,44 @@
 #include <iostream>
 #include <vector>
 
-class CQuickSort
+// #defines (followed visual studio's recommendation and made them constexpr)
+constexpr auto ASCIIOFFSET = 48;
+constexpr auto nullInput = -1;
+
+namespace QST
+{
+	enum KINPUT
+	{
+		ZERO = 48,
+		ONE,
+		TWO,
+		THREE,
+		FOUR,
+		FIVE,
+		SIX,
+		SEVEN,
+		EIGHT,
+		NINE,
+	};
+
+	enum SORT_TYPE
+	{
+		ASCENDING,
+		DESCENDING,
+	};
+};
+
+static class CQuickSort
 {
 public:
-	CQuickSort();
-	~CQuickSort();
+	static void PrintTitle();
+	static void PrintPrompt(int _prompNumber);
 
-	void Swap(int* _value1, int* _value2);
+	static void Swap(int* _value1, int* _value2);
 
-	bool IndexGreaterThan(int index1, int index2)
-	{
-		if (index1 > index2)
-		{
-			return true;
-		}
-		return false;
-	}
+	static void QuickSort(int* _array, int _arrayStartIndex, int _arrayEndIndex, bool _ascending);
+	static void QuickSort(int* _array, int _arrayLength, bool _ascending);
 
-	int Partition(int m_Array[], int _smallestValueIndex, int _largestValueIndex);
-	
-	void QuickSort(int m_Array[], int _smallestValueIndex, int _largestValueIndex);
-	
-	void Display(int m_Array[]);
+	static void Display(int* _array, int _arrayEndIndex);
 };
 

@@ -1,7 +1,9 @@
 #pragma warning( disable : 26812)
 
-#include <iostream>
+// Non-Local Includes 
 #include <conio.h>
+
+// Local Includes
 #include "CDeQue.h"
 
 #define ONE 49
@@ -28,12 +30,14 @@ enum STATE
 	Exit,
 };
 
+// Global Variables
 STATE m_RuntimeState = STATE::MainMenu;
 
 void PrintMainMenu();
 void PrintTitle();
 
 int m_iMenuChoice = NULL;
+
 bool m_bExit = false;
 
 int main()
@@ -112,7 +116,6 @@ int main()
 			}
 			}
 
-
 			break;
 		}
 
@@ -121,7 +124,7 @@ int main()
 			newQueue->Enqueue_Front(1);
 
 			// Display
-			newQueue->display();
+			newQueue->Display();
 			m_RuntimeState = STATE::MainMenu;
 
 			break;
@@ -132,7 +135,7 @@ int main()
 			newQueue->Enqueue_Back(2);
 
 			// Display
-			newQueue->display();
+			newQueue->Display();
 			m_RuntimeState = STATE::MainMenu;
 
 			break;
@@ -143,7 +146,7 @@ int main()
 			newQueue->Dequeue_Front();
 
 			// Display
-			newQueue->display();
+			newQueue->Display();
 			m_RuntimeState = STATE::MainMenu;
 
 			break;
@@ -154,7 +157,7 @@ int main()
 			newQueue->Dequeue_Back();
 
 			// Display
-			newQueue->display();
+			newQueue->Display();
 			m_RuntimeState = STATE::MainMenu;
 
 			break;
@@ -182,8 +185,6 @@ int main()
 
 		case STATE::IsEmpty:
 		{
-			
-
 			// Display
 			if (newQueue->IsEmpty())
 			{
@@ -200,7 +201,6 @@ int main()
 
 		case STATE::Exit:
 		{
-
 			system("cls");
 			m_bExit = true;
 			break;
@@ -211,11 +211,9 @@ int main()
 			cout << "MENU OPTION FAILED" << endl;
 			break;
 		} 
-
 		}
 	}
 	
-
 	// Cleanup
 	delete newQueue;
 	newQueue = nullptr;
@@ -226,8 +224,6 @@ int main()
 
 void PrintMainMenu()
 {
-	
-
 	// Print Menu Options
 	cout << "1. Enqueue_Front" << endl
 		<< "2. Enqueue_Back" << endl

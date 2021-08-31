@@ -1,5 +1,8 @@
 ﻿C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\MSBuild\Microsoft\VC\v160\Microsoft.CppBuild.targets(519,5): warning MSB8028: The intermediate directory (Debug\) contains files shared from another project (GD1P02SUMM1.vcxproj).  This can lead to incorrect clean and rebuild behavior.
   CQuickSort.cpp
+C:\Users\trand\Documents\GITHUB\GD1P02-ASS1\GD1P02SUMM1\GD1P02SUMM1\CQuickSort.h(44,2): warning C4091: 'static ': ignored on left of 'CQuickSort' when no variable is declared
   Main.cpp
+C:\Users\trand\Documents\GITHUB\GD1P02-ASS1\GD1P02SUMM1\GD1P02SUMM1\CQuickSort.h(44,2): warning C4091: 'static ': ignored on left of 'CQuickSort' when no variable is declared
   Generating Code...
   GD1P02SUMM1.vcxproj -> C:\Users\trand\Documents\GITHUB\GD1P02-ASS1\GD1P02SUMM1\Debug\GD1P02SUMM1-QUICKSORT.exe
+  GD1P02SUMM1.vcxproj -> C:\Users\trand\Documents\GITHUB\GD1P02-ASS1\GD1P02SUMM1\Debug\GD1P02SUMM1-QUICKSORT.pdb (Partial -> Full PDB)
