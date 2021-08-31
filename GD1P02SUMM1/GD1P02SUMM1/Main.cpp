@@ -1,11 +1,13 @@
-﻿// Non-Local Includes
+﻿#pragma warning (disable :  26812) // "Prefer Enum Class" :P
+
+// Non-Local Includes
 #include <conio.h>
 #include <Windows.h>
 
 // Local Includes
-#include "CQuickSort.h"
+#include "iSort.h"
 
-using namespace QST;
+using namespace iSORT;
 
 // Global Variables
 SORT_TYPE m_SortType = ASCENDING;
@@ -28,8 +30,8 @@ int main()
 	// Line 1 Input Check
 	while (m_iInput != ZERO && m_iInput != ONE)
 	{
-		CQuickSort::PrintTitle();
-		CQuickSort::PrintPrompt(1);
+		iSort::PrintTitle();
+		iSort::PrintPrompt(1);
 
 		m_iInput = _getch();
 		system("cls");
@@ -40,8 +42,8 @@ int main()
 	{
 		m_iAscendingValue = 0;
 		m_bIsDescending = false;
-		CQuickSort::PrintTitle();
-		CQuickSort::PrintPrompt(1);
+		iSort::PrintTitle();
+		iSort::PrintPrompt(1);
 		std::cout << m_iAscendingValue << std::endl << std::endl;
 	}
 	else if (m_iInput == ONE)
@@ -49,7 +51,7 @@ int main()
 		m_iAscendingValue = 1;
 		m_bIsDescending = true;
 
-		CQuickSort::PrintTitle();
+		iSort::PrintTitle();
 		std::cout << m_iAscendingValue << std::endl << std::endl;
 	}
 
@@ -61,10 +63,10 @@ int main()
 	while (m_iInput <= ZERO)
 	{
 		// Title
-		CQuickSort::PrintTitle();
+		iSort::PrintTitle();
 		
 		// Line 1
-		CQuickSort::PrintPrompt(1);
+		iSort::PrintPrompt(1);
 		if (!m_bIsDescending)
 		{
 			std::cout << 0 << std::endl << std::endl;
@@ -75,7 +77,7 @@ int main()
 		}
 		
 		// Line 2
-		CQuickSort::PrintPrompt(2);
+		iSort::PrintPrompt(2);
 
 		// Input
 		m_iInput = _getch();
@@ -104,14 +106,14 @@ int main()
 	for (int i = 0; i < m_iNumberOfElements; i++)
 	{
 		// Title
-		CQuickSort::PrintTitle();
+		iSort::PrintTitle();
 
 		// LINE 1
-		CQuickSort::PrintPrompt(1);
+		iSort::PrintPrompt(1);
 		std::cout << m_iAscendingValue << std::endl << std::endl;
 
 		// LINE 2
-		CQuickSort::PrintPrompt(2);
+		iSort::PrintPrompt(2);
 		std::cout << m_iNumberOfElements << std::endl << std::endl;
 
 		// LINE 3
@@ -119,7 +121,7 @@ int main()
 		if (m_iInput == NULL)
 		{
 			
-			CQuickSort::PrintPrompt(3);
+			iSort::PrintPrompt(3);
 			for (int i = 0; i < m_iNumberOfElements; i++)
 			{
 				if (m_iArray[i] != -1)
@@ -149,25 +151,28 @@ int main()
 	//
 	
 	// Title
-	CQuickSort::PrintTitle();
+	iSort::PrintTitle();
 
 	// LINE 1 (Ascending?)
-	CQuickSort::PrintPrompt(1);
+	iSort::PrintPrompt(1);
 	std::cout << m_iAscendingValue << std::endl << std::endl;
 
 	// LINE 2 (Number Of Elements)
-	CQuickSort::PrintPrompt(2);
+	iSort::PrintPrompt(2);
 	std::cout << m_iNumberOfElements << std::endl << std::endl;
 
 	// LINE 3 (Unsorted Array)
-	CQuickSort::PrintPrompt(3);
+	iSort::PrintPrompt(3);
 	for (int i = 0; i < m_iNumberOfElements; i++)
 	{
 		std::cout << m_iArray[i] << " ";
 	}
 
 	// Sort
-	CQuickSort::QuickSort(m_iArray, 0, m_iNumberOfElements - 1, m_iAscendingValue);
+	iSort::QuickSort(m_iArray, m_iNumberOfElements, m_bIsDescending);
+	//CSort::InsertSort(m_iArray, m_iNumberOfElements);
+	//CSort::SelectionSort(m_iArray, m_iNumberOfElements);
+	//CSort::BubbleSort(m_iArray, m_iNumberOfElements);
 
 	// Pretending To Sort (Its Already Sorted!)
 	std::cout << std::endl << std::endl;
@@ -182,8 +187,8 @@ int main()
 	std::cout << std::endl << std::endl;
 	
 	// Print Sorted Array
-	CQuickSort::PrintPrompt(4);
-	CQuickSort::Display(m_iArray, m_iNumberOfElements);
+	iSort::PrintPrompt(4);
+	iSort::Display(m_iArray, m_iNumberOfElements);
 
 	// Spacing
 	std::cout <<  std::endl << std::endl;

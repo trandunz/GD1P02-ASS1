@@ -15,7 +15,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="CQuickSort.cpp">
+    <ClCompile Include="iSort.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Main.cpp">
@@ -23,7 +23,7 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="CQuickSort.h">
+    <ClInclude Include="iSort.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
