@@ -19,10 +19,10 @@ public:
 		return false;
 	}
 
-	int Partition(int* m_Array, int _smallestValueIndex, int _largestValueIndex);
+	int Partition(int m_Array[], int _smallestValueIndex, int _largestValueIndex);
 	
-	void QuickSort(int* m_Array, int _smallestValueIndex, int _largestValueIndex);
+	void QuickSort(int m_Array[], int _smallestValueIndex, int _largestValueIndex);
 	
-	void Display(int* m_Array);
+	void Display(int m_Array[]);
 };
 

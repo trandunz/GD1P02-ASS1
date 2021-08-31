@@ -31,6 +31,7 @@ enum STATE
 STATE m_RuntimeState = STATE::MainMenu;
 
 void PrintMainMenu();
+void PrintTitle();
 
 int m_iMenuChoice = NULL;
 bool m_bExit = false;
@@ -52,6 +53,9 @@ int main()
 				
 				m_iMenuChoice = NULL;
 				
+				// Title
+				PrintTitle();
+
 				// Print Menu Options
 				PrintMainMenu();
 
@@ -222,6 +226,8 @@ int main()
 
 void PrintMainMenu()
 {
+	
+
 	// Print Menu Options
 	cout << "1. Enqueue_Front" << endl
 		<< "2. Enqueue_Back" << endl
@@ -231,4 +237,18 @@ void PrintMainMenu()
 		<< "6. Peek_Back" << endl
 		<< "7. IsEmpty" << endl
 		<< "8. Exit" << endl;
+}
+
+void PrintTitle()
+{
+	std::cout << R"(
+-----------------------------------------
+  _____   ______  ____   _    _  ______ 
+ |  __ \ |  ____|/ __ \ | |  | ||  ____|
+ | |  | || |__  | |  | || |  | || |__   
+ | |  | ||  __| | |  | || |  | ||  __|  
+ | |__| || |____| |__| || |__| || |____ 
+ |_____/ |______|\___\_\ \____/ |______|
+-----------------------------------------
+)" << '\n';
 }
