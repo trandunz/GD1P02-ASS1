@@ -1,14 +1,36 @@
+// Bachelor of Software Engineering
+// Media Design School
+// Auckland
+// New Zealand
+//
+// (c) Media Design School
+//
+// File Name : CSingleLinkList.cpp
+// Description : The Implementation File For The CSingleLinkList Class.
+// Author : William Inman
+// Mail : william.inman@mds.ac.nz
+//
+
 #include "CSingleLinkList.h"
 
+/// <summary>
+/// Defualt Constructor For CSingleLinkList Instances
+/// </summary>
 CSingleLinkList::CSingleLinkList()
 {
+	// Init
 	m_bIsStack = false;
 	m_iNodeCount = 0;
 	m_firstNode = nullptr;
 }
 
+
+/// <summary>
+/// Destructor For CSingleLinkList Instances
+/// </summary>
 CSingleLinkList::~CSingleLinkList()
 {
+	// Cleanup
 	m_firstNode = nullptr;
 
 	// If Link List Is Not A Stack/Que (They Have There Own Cleanup)
@@ -18,12 +40,18 @@ CSingleLinkList::~CSingleLinkList()
 		std::cout << "Destructing LinkList" << std::endl;
 		while (m_iNodeCount > 0)
 		{
-			deleteFromTheEnd();
+			DeleteFromTheEnd();
 		}
 	}
 }
 
-void CSingleLinkList::insertAtTheFront(int _data)
+
+/// <summary>
+/// Inserts A Node At The Front Of The List.
+/// Takes In: int (Data You Want To Store)
+/// </summary>
+/// <param name="_data"></param>
+void CSingleLinkList::InsertAtTheFront(int _data)
 {
 	switch (m_iNodeCount)
 	{
@@ -46,6 +74,7 @@ void CSingleLinkList::insertAtTheFront(int _data)
 		break;
 	}
 	default:
+	{
 		m_iNodeCount++;
 		CNode* CNewNode = new CNode;
 
@@ -59,12 +88,18 @@ void CSingleLinkList::insertAtTheFront(int _data)
 		{
 			std::cout << "Inserted at start (Frt::Node " << CNewNode->GetData() << ")" << std::endl;
 		}
-		
+
 		break;
+	}
 	}
 }
 
-void CSingleLinkList::insertInTheMiddle(int _data)
+/// <summary>
+/// Inserts A Node At In The Middle Of The List.
+/// Takes In: int (Data You Want To Store)
+/// </summary>
+/// <param name="_data"></param>
+void CSingleLinkList::InsertInTheMiddle(int _data)
 {
 	switch (m_iNodeCount)
 	{
@@ -91,6 +126,7 @@ void CSingleLinkList::insertInTheMiddle(int _data)
 		m_iNodeCount++;
 		CNode* CTemp = m_firstNode;
 
+		// Increment Temp Counter
 		for (int i = 0; i < (m_iNodeCount / 2) - 1; i++)
 		{
 			if (CTemp->GetNextNode() != nullptr)
@@ -102,6 +138,7 @@ void CSingleLinkList::insertInTheMiddle(int _data)
 		CNode* CNewNode = new CNode;
 
 		CNewNode->SetNextNode(CTemp->GetNextNode());
+
 		CTemp->SetNextNode(CNewNode);
 
 		CTemp = nullptr;
@@ -117,6 +154,7 @@ void CSingleLinkList::insertInTheMiddle(int _data)
 		m_iNodeCount++;
 		CNode* CTemp = m_firstNode;
 
+		// Increment Temp Counter
 		for (int i = 0; i < (m_iNodeCount / 2) - 1; i++)
 		{
 			if (CTemp->GetNextNode() != nullptr)
@@ -128,6 +166,7 @@ void CSingleLinkList::insertInTheMiddle(int _data)
 		CNode* CNewNode = new CNode;
 
 		CNewNode->SetNextNode(CTemp->GetNextNode());
+
 		CTemp->SetNextNode(CNewNode);
 
 		CTemp = nullptr;
@@ -142,7 +181,12 @@ void CSingleLinkList::insertInTheMiddle(int _data)
 	
 }
 
-void CSingleLinkList::insertAtTheEnd(int _data)
+/// <summary>
+/// Inserts A Node At The End Of The List.
+/// Takes In: int (Data You Want To Store)
+/// </summary>
+/// <param name="_data"></param>
+void CSingleLinkList::InsertAtTheEnd(int _data)
 {
 	switch (m_iNodeCount)
 	{
@@ -175,7 +219,6 @@ void CSingleLinkList::insertAtTheEnd(int _data)
 		while (CTemp->GetNextNode() != nullptr)
 		{
 			CTemp = CTemp->GetNextNode();
-
 		}
 
 		CTemp->SetNextNode(CNewNode);
@@ -191,7 +234,10 @@ void CSingleLinkList::insertAtTheEnd(int _data)
 	}
 }
 
-void CSingleLinkList::deleteFromTheFront()
+/// <summary>
+/// Deletes A Node At The Front Of The List.
+/// </summary>
+void CSingleLinkList::DeleteFromTheFront()
 {
 	switch (m_iNodeCount)
 	{
@@ -207,8 +253,11 @@ void CSingleLinkList::deleteFromTheFront()
 	case 1:
 	{
 		m_firstNode->SetNextNode(nullptr);
+
+		// Cleanup
 		delete m_firstNode;
 		m_firstNode = nullptr;
+
 		if (!m_bIsStack)
 		{
 			std::cout << "Deleted First Node (Frt::Only One Node)" << std::endl;
@@ -221,14 +270,19 @@ void CSingleLinkList::deleteFromTheFront()
 	default:
 		CNode* CTemp = m_firstNode;
 		CNode* CSuperTemp = m_firstNode;
+
 		CTemp = CTemp->GetNextNode();
+
 		m_firstNode = CTemp;
+
 		CSuperTemp->SetNextNode(nullptr);
+
 		if (!m_bIsStack)
 		{
 			std::cout << "Deleted First Node (Frt::Node " << CSuperTemp->GetData() << ")" << std::endl;
 		}
 		
+		// Cleanup
 		delete CSuperTemp;
 		CSuperTemp = nullptr;
 		CTemp = nullptr;
@@ -240,7 +294,11 @@ void CSingleLinkList::deleteFromTheFront()
 	
 }
 
-void CSingleLinkList::deleteFromTheMiddle(int _data)
+/// <summary>
+/// Deletes A Node From The Middle Of The List.
+/// Takes In: int (Data Of The Object You Want To Delete)
+/// </summary>
+void CSingleLinkList::DeleteFromTheMiddle(int _data)
 {
 	switch (m_iNodeCount)
 	{
@@ -256,8 +314,11 @@ void CSingleLinkList::deleteFromTheMiddle(int _data)
 	case 1:
 	{
 		m_firstNode->SetNextNode(nullptr);
+
+		// Cleanup
 		delete m_firstNode;
 		m_firstNode = nullptr;
+
 		if (!m_bIsStack)
 		{
 			std::cout << "Deleted Node (" << _data << ") (Del::Only One Node)" << std::endl;
@@ -271,17 +332,25 @@ void CSingleLinkList::deleteFromTheMiddle(int _data)
 	{
 		CNode* CTemp = m_firstNode;
 
+		// Increment Temp
 		while (CTemp->GetNextNode()->GetNextNode() != nullptr)
 		{
 			CTemp = CTemp->GetNextNode();
 		}
+
 		CNode* CBeforeDelete = CTemp;
+
 		CTemp = CBeforeDelete->GetNextNode();
+
+		// DELETE
 		delete CTemp;
 
 		CBeforeDelete->SetNextNode(nullptr);
+
+		// Cleanup
 		CBeforeDelete = nullptr;
 		CTemp = nullptr;
+
 		if (!m_bIsStack)
 		{
 			std::cout << "Deleted End Node (Mid::Only Two Nodes)" << std::endl;
@@ -294,7 +363,10 @@ void CSingleLinkList::deleteFromTheMiddle(int _data)
 	default:
 		
 		m_firstNode->SetNextNode(m_firstNode->GetNextNode()->GetNextNode());
+
 		CNode* CTemp = m_firstNode;
+
+		// Increment Temp
 		for (int i = 0; i < (m_iNodeCount / 2) - 1; i++)
 		{
 			if (CTemp->GetNextNode() != nullptr)
@@ -302,12 +374,14 @@ void CSingleLinkList::deleteFromTheMiddle(int _data)
 				CTemp = CTemp->GetNextNode();
 			}
 		}
-		CTemp->SetNextNode(nullptr);
+
 		if (!m_bIsStack)
 		{
 			std::cout << "Deleted Middle Node (Mid::Node " << CTemp->GetData() << ")" << std::endl;
 		}
 		
+		// Cleanup
+		CTemp->SetNextNode(nullptr);
 		delete CTemp;
 		CTemp = nullptr;
 
@@ -317,7 +391,10 @@ void CSingleLinkList::deleteFromTheMiddle(int _data)
 	}
 }
 
-void CSingleLinkList::deleteFromTheEnd()
+/// <summary>
+/// Deletes A Node From The End Of The List.
+/// </summary>
+void CSingleLinkList::DeleteFromTheEnd()
 {
 	switch (m_iNodeCount)
 	{
@@ -333,8 +410,11 @@ void CSingleLinkList::deleteFromTheEnd()
 	case 1:
 	{
 		m_firstNode->SetNextNode(nullptr);
+
+		// Cleanup
 		delete m_firstNode;
 		m_firstNode = nullptr;
+
 		if (!m_bIsStack)
 		{
 			std::cout << "Deleted First Node (End::Only One Node)" << std::endl;
@@ -347,19 +427,25 @@ void CSingleLinkList::deleteFromTheEnd()
 	default:
 		CNode* CTemp = m_firstNode;
 
+		// Increment Temp
 		while (CTemp->GetNextNode()->GetNextNode() != nullptr)
 		{
 			CTemp = CTemp->GetNextNode();
 		}
+
 		CNode* CBeforeDelete = CTemp;
+
 		CTemp = CBeforeDelete->GetNextNode();
+
 		if (!m_bIsStack)
 		{
 			std::cout << "Deleted End Node (End::Node " << CTemp->GetData() << ")" << std::endl;
 		}
 		
+		// DELETE
 		delete CTemp;
 
+		// Cleanup
 		CBeforeDelete->SetNextNode(nullptr);
 		CBeforeDelete = nullptr;
 		CTemp = nullptr;
@@ -371,9 +457,13 @@ void CSingleLinkList::deleteFromTheEnd()
 	
 }
 
+/// <summary>
+/// Deletes The Node From The List With The Specified Data.
+/// Takes In: int (Data Of The Object You Want To Delete)
+/// </summary>
 void CSingleLinkList::Delete(int _data)
 {
-	if (search(_data))
+	if (Search(_data))
 	{
 		CNode* CTemp = m_firstNode;
 
@@ -382,8 +472,11 @@ void CSingleLinkList::Delete(int _data)
 		case 1:
 		{
 			m_firstNode->SetNextNode(nullptr);
+
+			// Cleanup
 			delete m_firstNode;
 			m_firstNode = nullptr;
+
 			if (!m_bIsStack)
 			{
 				std::cout << "Deleted Node (" << _data << ") (Del::Only One Node)" << std::endl;
@@ -397,9 +490,12 @@ void CSingleLinkList::Delete(int _data)
 			if (CTemp->GetData() == _data)
 			{
 				m_firstNode = CTemp->GetNextNode();
+
+				// Cleanup
 				CTemp->SetNextNode(nullptr);
 				delete CTemp;
 				CTemp = nullptr;
+
 				if (!m_bIsStack)
 				{
 					std::cout << "Deleted Node (" << _data << ")" << std::endl;
@@ -409,21 +505,26 @@ void CSingleLinkList::Delete(int _data)
 			}
 			else
 			{
+				// Increment Temp
 				while (CTemp->GetNextNode()->GetData() != _data && CTemp->GetNextNode() != nullptr)
 				{
 					CTemp = CTemp->GetNextNode();
 				}
+
 				CNode* CBeforeDelete = CTemp;
 
 				CTemp = CTemp->GetNextNode()->GetNextNode();
 
+				// Cleanup
 				CBeforeDelete->GetNextNode()->SetNextNode(nullptr);
 				delete CBeforeDelete->GetNextNode();
 
 				CBeforeDelete->SetNextNode(CTemp);
 
+				// Cleanup
 				CBeforeDelete = nullptr;
 				CTemp = nullptr;
+
 				if (!m_bIsStack)
 				{
 					std::cout << "Deleted Node (" << _data << ")" << std::endl;
@@ -437,7 +538,12 @@ void CSingleLinkList::Delete(int _data)
 	}
 }
 
-bool CSingleLinkList::search(int _data)
+/// <summary>
+/// Searches Through The List And Returns Corresponding Bool If Specified Node Is Found
+/// </summary>
+/// <param name="_data"></param>
+/// <returns></returns>
+bool CSingleLinkList::Search(int _data)
 {
 	switch (m_iNodeCount)
 	{
@@ -454,6 +560,8 @@ bool CSingleLinkList::search(int _data)
 	default:
 	{
 		CNode* CTemp = m_firstNode;
+
+		// Increment Temp
 		while (CTemp->GetData() != _data && CTemp->GetNextNode() != nullptr)
 		{
 			CTemp = CTemp->GetNextNode();
@@ -466,7 +574,9 @@ bool CSingleLinkList::search(int _data)
 				std::cout << "Search Successful (Sch::Found Node " << _data << ")" << std::endl;
 			}
 			
+			// Cleanup
 			CTemp = nullptr;
+
 			return(true);
 
 		}
@@ -477,7 +587,9 @@ bool CSingleLinkList::search(int _data)
 				std::cout << "Search Failed (No Node With Matching Data (" << CTemp->GetData() << "))" << std::endl;
 			}
 			
+			// Cleanup
 			CTemp = nullptr;
+
 			return(false);
 		}
 		break;
@@ -485,7 +597,10 @@ bool CSingleLinkList::search(int _data)
 	}
 }
 
-void CSingleLinkList::display()
+/// <summary>
+/// Prints The Link List To The Console Window
+/// </summary>
+void CSingleLinkList::Display()
 {
 	switch (m_iNodeCount)
 	{
@@ -497,6 +612,8 @@ void CSingleLinkList::display()
 	default:
 	{
 		CNode* CTemp = m_firstNode;
+
+		// Iterate Temp
 		for (int i = 0; i < m_iNodeCount; i++)
 		{
 			std::cout << CTemp->GetData() << std::endl;
@@ -505,7 +622,10 @@ void CSingleLinkList::display()
 				CTemp = CTemp->GetNextNode();
 			}
 		}
+
+		// Cleanup
 		CTemp = nullptr;
+
 		std::cout << "Display Successful" << std::endl << std::endl;
 
 		break;

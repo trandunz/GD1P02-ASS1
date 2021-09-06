@@ -1,3 +1,16 @@
+// Bachelor of Software Engineering
+// Media Design School
+// Auckland
+// New Zealand
+//
+// (c) Media Design School
+//
+// File Name : iSort.cpp
+// Description : The Implementation File For The iSort Class.
+// Author : William Inman
+// Mail : william.inman@mds.ac.nz
+//
+
 // Local Includes
 #include "iSort.h"
 
@@ -192,8 +205,8 @@ void iSort::InsertSort(int* _array, int _arrayLength)
 		key = _array[i];
 		j = i - 1;
 
-		/* Move elements of arr[0..i-1], that are
-		greater than key, to one position ahead
+		/* Move elements of arr[from 0 to i-1] that are
+		greater than key to one position ahead
 		of their current position */
 		while (j >= 0 && _array[j] > key)
 		{

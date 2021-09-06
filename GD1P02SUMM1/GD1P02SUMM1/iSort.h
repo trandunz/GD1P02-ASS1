@@ -1,3 +1,16 @@
+// Bachelor of Software Engineering
+// Media Design School
+// Auckland
+// New Zealand
+//
+// (c) Media Design School
+//
+// File Name : iSort.h
+// Description : The Header File For The iSort Class.
+// Author : William Inman
+// Mail : william.inman@mds.ac.nz
+//
+
 #pragma once
 #pragma warning (disable :  26812) // "Prefer Enum Class" :P
 #ifndef _iSort_H__

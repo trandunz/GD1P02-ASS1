@@ -1,3 +1,16 @@
+// Bachelor of Software Engineering
+// Media Design School
+// Auckland
+// New Zealand
+//
+// (c) Media Design School
+//
+// File Name : CSingleLinkList.h
+// Description : The Header File For The CSingleLinkList Class.
+// Author : William Inman
+// Mail : william.inman@mds.ac.nz
+//
+
 #pragma once
 #ifndef _SINGLE_LINKEDLIST_H__
 #define _SINGLE_LINKEDLIST_H__
@@ -11,19 +24,19 @@ public:
 	CSingleLinkList();
 	virtual ~CSingleLinkList();
 
-	void insertAtTheFront(int _data);
-	void insertInTheMiddle(int _data);
-	void insertAtTheEnd(int _data);
+	void InsertAtTheFront(int _data);
+	void InsertInTheMiddle(int _data);
+	void InsertAtTheEnd(int _data);
 
-	void deleteFromTheFront();
-	void deleteFromTheMiddle(int _data);
-	void deleteFromTheEnd();
+	void DeleteFromTheFront();
+	void DeleteFromTheMiddle(int _data);
+	void DeleteFromTheEnd();
 
 	void Delete(int _data);
 
-	bool search(int _data);
+	bool Search(int _data);
 
-	virtual void display();
+	virtual void Display();
 
 protected:
 	bool m_bIsStack;

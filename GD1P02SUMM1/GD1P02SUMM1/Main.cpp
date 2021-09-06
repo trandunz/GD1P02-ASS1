@@ -1,4 +1,21 @@
-﻿#pragma warning (disable :  26812) // "Prefer Enum Class" :P
+﻿//			  ---------
+//			  | iSort |
+//			  ---------
+//
+// Bachelor of Software Engineering
+// Media Design School
+// Auckland
+// New Zealand
+//
+// (c) Media Design School
+//
+// File Name : Main.cpp
+// Description : The Main Implementation File For The QuickSort Program.
+// Author : William Inman
+// Mail : william.inman@mds.ac.nz
+//
+
+#pragma warning (disable :  26812) // "Prefer Enum Class" :P
 
 // Non-Local Includes
 #include <conio.h>

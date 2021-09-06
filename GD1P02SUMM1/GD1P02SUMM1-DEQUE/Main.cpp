@@ -1,3 +1,20 @@
+//			  ---------
+//			  | DeQue |
+//			  ---------
+//
+// Bachelor of Software Engineering
+// Media Design School
+// Auckland
+// New Zealand
+//
+// (c) Media Design School
+//
+// File Name : Main.cpp
+// Description : The Main Implementation File For The DeQue Program.
+// Author : William Inman
+// Mail : william.inman@mds.ac.nz
+//
+
 #pragma warning( disable : 26812)
 
 // Non-Local Includes 
@@ -6,17 +23,19 @@
 // Local Includes
 #include "CDeQue.h"
 
-#define ONE 49
-#define TWO 50
-#define THREE 51
-#define FOUR 52
-#define FIVE 53
-#define SIX 54
-#define SEVEN 55
-#define EIGHT 56
+// #Defines
+constexpr auto ONE = 49;
+constexpr auto TWO = 50;
+constexpr auto THREE = 51;
+constexpr auto FOUR = 52;
+constexpr auto FIVE = 53;
+constexpr auto SIX = 54;
+constexpr auto SEVEN = 55;
+constexpr auto EIGHT = 56;
 
 using namespace std;
 
+// The Different States The Program Can Be In
 enum STATE
 {
 	MainMenu,
@@ -40,21 +59,28 @@ int m_iMenuChoice = NULL;
 
 bool m_bExit = false;
 
+/// <summary>
+/// Main Implementation Function For The Programs Implementation File.
+/// </summary>
+/// <returns></returns>
 int main()
 {
 	CDeQue* newQueue = new CDeQue;
 	
+	// While The Program Is Open...
 	while (!m_bExit)
 	{
 		switch (m_RuntimeState)
 		{
 		case STATE::MainMenu:
 		{
+			// Init Menu Choice
 			m_iMenuChoice = NULL;
 			
+			// Menu Choice Check Loop
 			while (m_iMenuChoice < ONE || m_iMenuChoice > EIGHT)
 			{
-				
+				// Reset Input
 				m_iMenuChoice = NULL;
 				
 				// Title
@@ -63,11 +89,13 @@ int main()
 				// Print Menu Options
 				PrintMainMenu();
 
+				// Get Input
 				m_iMenuChoice = _getch();
+
 				system("cls");
-				
 			}
 
+			// Menu Choices
 			switch (m_iMenuChoice)
 			{
 			case ONE:
@@ -119,12 +147,17 @@ int main()
 			break;
 		}
 
+		//
+		// RunTime States
+		//
 		case STATE::EnqueueFront:
 		{
 			newQueue->Enqueue_Front(1);
 
 			// Display
 			newQueue->Display();
+
+			// Return To Main Menu
 			m_RuntimeState = STATE::MainMenu;
 
 			break;
@@ -136,6 +169,8 @@ int main()
 
 			// Display
 			newQueue->Display();
+
+			// Return To Main Menu
 			m_RuntimeState = STATE::MainMenu;
 
 			break;
@@ -147,6 +182,8 @@ int main()
 
 			// Display
 			newQueue->Display();
+
+			// Return To Main Menu
 			m_RuntimeState = STATE::MainMenu;
 
 			break;
@@ -158,6 +195,8 @@ int main()
 
 			// Display
 			newQueue->Display();
+
+			// Return To Main Menu
 			m_RuntimeState = STATE::MainMenu;
 
 			break;
@@ -168,6 +207,7 @@ int main()
 			newQueue->Peek_Front();
 			cout << std::endl;
 
+			// Return To Main Menu
 			m_RuntimeState = STATE::MainMenu;
 
 			break;
@@ -178,6 +218,7 @@ int main()
 			newQueue->Peek_Back();
 			cout << std::endl;
 
+			// Return To Main Menu
 			m_RuntimeState = STATE::MainMenu;
 
 			break;
@@ -194,6 +235,8 @@ int main()
 			{
 				cout << "Deque Contains Nodes (Empty::false)" << endl << endl;
 			}
+
+			// Return To Main Menu
 			m_RuntimeState = STATE::MainMenu;
 
 			break;
@@ -222,6 +265,9 @@ int main()
 	return NULL;
 }
 
+/// <summary>
+/// Prints The Main Menu Options To The Console Window.
+/// </summary>
 void PrintMainMenu()
 {
 	// Print Menu Options
@@ -235,6 +281,9 @@ void PrintMainMenu()
 		<< "8. Exit" << endl;
 }
 
+/// <summary>
+/// Prints The ASSCI Art "QuickSort" To The Console Window.
+/// </summary>
 void PrintTitle()
 {
 	std::cout << R"(
@@ -245,6 +294,7 @@ void PrintTitle()
  | |  | ||  __| | |  | || |  | ||  __|  
  | |__| || |____| |__| || |__| || |____ 
  |_____/ |______|\___\_\ \____/ |______|
+
 -----------------------------------------
 )" << '\n';
 }

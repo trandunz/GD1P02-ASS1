@@ -1,3 +1,17 @@
+// Bachelor of Software Engineering
+// Media Design School
+// Auckland
+// New Zealand
+//
+// (c) Media Design School
+//
+// File Name : CDeQue.h
+// Description : The Header File For The CDeQue Class.
+// Author : William Inman
+// Mail : william.inman@mds.ac.nz
+//
+
+
 #pragma once
 #ifndef _DEQUE_H__
 #define _DEQUE_H__
