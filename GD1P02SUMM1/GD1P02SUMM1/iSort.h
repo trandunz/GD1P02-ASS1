@@ -11,8 +11,9 @@
 // Mail : william.inman@mds.ac.nz
 //
 
-#pragma once
 #pragma warning (disable :  26812) // "Prefer Enum Class" :P
+
+#pragma once
 #ifndef _iSort_H__
 #define _iSort_H__
 

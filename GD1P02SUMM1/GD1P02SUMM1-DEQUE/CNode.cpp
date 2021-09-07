@@ -11,6 +11,8 @@
 // Mail : william.inman@mds.ac.nz
 //
 
+#pragma warning( disable : 26812) // "Prefer Enum Class" :P
+
 // Local Includes
 #include "CNode.h"
 
@@ -30,13 +32,13 @@ CNode::CNode()
 /// </summary>
 CNode::~CNode()
 {
+	// Debug
+	std::cout << "Destructed Node (" << m_iData << ")" << std::endl;
+
 	// Cleanup
 	m_PrevNode = nullptr;
 	m_NextNode = nullptr;
 	m_iData = -1;
-
-	// Debug
-	std::cout << "Destructing Node (" << m_iData << ")" << std::endl;
 }
 
 /// <summary>

@@ -15,7 +15,7 @@
 // Mail : william.inman@mds.ac.nz
 //
 
-#pragma warning( disable : 26812)
+#pragma warning( disable : 26812) // "Prefer Enum Class" :P
 
 // Non-Local Includes 
 #include <conio.h>
@@ -24,6 +24,7 @@
 #include "CDeQue.h"
 
 // #Defines
+constexpr auto ZERO = 48;
 constexpr auto ONE = 49;
 constexpr auto TWO = 50;
 constexpr auto THREE = 51;
@@ -32,6 +33,7 @@ constexpr auto FIVE = 53;
 constexpr auto SIX = 54;
 constexpr auto SEVEN = 55;
 constexpr auto EIGHT = 56;
+constexpr auto NINE = 57;
 
 using namespace std;
 
@@ -92,6 +94,23 @@ int main()
 				// Get Input
 				m_iMenuChoice = _getch();
 
+				// Invalid
+				if (m_iMenuChoice < ONE || m_iMenuChoice > EIGHT)
+				{
+					// Error
+					std::cout << "  Sorry. I Only Accept The Given Inputs.";
+
+					// Wait For Next Input
+					m_iMenuChoice = _getch();
+
+					// Valid After Invalid
+					if (m_iMenuChoice >= ONE && m_iMenuChoice <= EIGHT)
+					{
+						// Clear Screen
+						system("cls");
+						break;
+					}
+				}
 				system("cls");
 			}
 
@@ -152,7 +171,7 @@ int main()
 		//
 		case STATE::EnqueueFront:
 		{
-			newQueue->Enqueue_Front(1);
+			newQueue->Enqueue_Front(rand() % 100);
 
 			// Display
 			newQueue->Display();
@@ -165,7 +184,7 @@ int main()
 
 		case STATE::EnqueueBack:
 		{
-			newQueue->Enqueue_Back(2);
+			newQueue->Enqueue_Back(rand() % 100);
 
 			// Display
 			newQueue->Display();

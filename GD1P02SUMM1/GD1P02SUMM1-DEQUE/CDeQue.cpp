@@ -11,6 +11,8 @@
 // Mail : william.inman@mds.ac.nz
 //
 
+#pragma warning( disable : 26812) // "Prefer Enum Class" :P
+
 // Local Includes
 #include "CDeQue.h"
 
@@ -56,7 +58,7 @@ void CDeQue::Enqueue(int _data)
 void CDeQue::Enqueue_Back(int _data)
 {
     InsertAtTheEnd(_data);
-    std::cout << "Enqueue'd From Back (Frt::Node " << _data << ")" << std::endl;
+    std::cout << "Enqueue'd From Back (End::Node " << _data << ")" << std::endl;
 }
 
 /// <summary>
@@ -123,16 +125,6 @@ void CDeQue::Dequeue()
 }
 
 /// <summary>
-/// Dequeues's The Node With The Specified Data From The Queue.
-/// Takes In: int (Desired Nodes Data).
-/// </summary>
-/// <param name="_data"></param>
-void CDeQue::Dequeue_Back(int _data)
-{
-    
-}
-
-/// <summary>
 /// Dequeues's A Node From The Back Of The Queue.
 /// </summary>
 void CDeQue::Dequeue_Back()
@@ -187,7 +179,6 @@ void CDeQue::Dequeue_Front(int _data)
         {
             std::cout << "Force Dequeue'd (Frt::Node " << m_firstNode->GetData() << ")" << std::endl;
             DeleteFromTheFront();
-
         }
 
         // Delete The Node
@@ -308,6 +299,7 @@ void CDeQue::Display()
     {
         CNode* CTemp = m_firstNode;
 
+        std::cout << "--" << std::endl;
          // Increment Temp
         for (int i = 0; i < m_iNodeCount; i++)
         {
@@ -317,6 +309,7 @@ void CDeQue::Display()
                 CTemp = CTemp->GetNextNode();
             }
         }
+        std::cout << "--" << std::endl;
 
         // Cleanup
         CTemp = nullptr;

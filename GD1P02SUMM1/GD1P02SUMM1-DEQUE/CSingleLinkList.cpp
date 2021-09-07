@@ -11,6 +11,9 @@
 // Mail : william.inman@mds.ac.nz
 //
 
+#pragma warning( disable : 26812) // "Prefer Enum Class" :P
+
+// Local Includes
 #include "CSingleLinkList.h"
 
 /// <summary>
@@ -22,6 +25,9 @@ CSingleLinkList::CSingleLinkList()
 	m_bIsStack = false;
 	m_iNodeCount = 0;
 	m_firstNode = nullptr;
+
+	// RNG Seeding
+	srand(time(NULL));
 }
 
 

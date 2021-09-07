@@ -11,6 +11,7 @@
 // Mail : william.inman@mds.ac.nz
 //
 
+#pragma warning( disable : 26812) // "Prefer Enum Class" :P
 
 #pragma once
 #ifndef _DEQUE_H__
@@ -32,7 +33,6 @@ public:
 	void Dequeue(int _data);
 	void Dequeue();
 
-	void Dequeue_Back(int _data);
 	void Dequeue_Back();
 
 	void Dequeue_Front(int _data);

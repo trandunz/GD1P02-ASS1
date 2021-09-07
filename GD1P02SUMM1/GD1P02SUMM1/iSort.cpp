@@ -11,6 +11,8 @@
 // Mail : william.inman@mds.ac.nz
 //
 
+#pragma warning (disable :  26812) // "Prefer Enum Class" :P
+
 // Local Includes
 #include "iSort.h"
 
@@ -43,17 +45,17 @@ void iSort::PrintPrompt(int _promptNumber)
 	{
 	case 1:
 	{
-		std::cout << "QuickSort In, Ascending (1)/Descending (0) ,Order" << std::endl << "---------------------------------------------------" << std::endl;
+		std::cout << "QuickSort In, Ascending (1) / Descending (0) ,Order" << std::endl << "------------------------------------------------------" << std::endl;
 		break;
 	}
 	case 2:
 	{
-		std::cout << "Number Of Elements" << std::endl << "--------------------" << std::endl;
+		std::cout << "Number Of Elements (Carriage Return To Continue) (Input Types: int) (Input Mustn't Be NULL To Continue)" << std::endl << "----------------------------------------------------------------------------------------------------------" << std::endl;
 		break;
 	}
 	case 3:
 	{
-		std::cout << "Element Values" << std::endl << "----------------" << std::endl;
+		std::cout << "Element Values (Space Bar To Continue) (Input Types: int) (Input Mustn't Be NULL To Continue)" << std::endl << "----------------------------------------------------------------------------------------------------------" << std::endl;
 		break;
 	}
 	case 4:
@@ -196,23 +198,20 @@ void iSort::QuickSort(int* _array, int _arrayLength, bool _ascending)
 /// <param name="_arrayLength"></param>
 void iSort::InsertSort(int* _array, int _arrayLength)
 {
-	int i = NULL;
 	int key = NULL;
 	int j = NULL;
 
-	for (i = 1; i < _arrayLength; i++)
+	for (int i = 1; i < _arrayLength; i++)
 	{
 		key = _array[i];
 		j = i - 1;
 
-		/* Move elements of arr[from 0 to i-1] that are
-		greater than key to one position ahead
-		of their current position */
 		while (j >= 0 && _array[j] > key)
 		{
 			_array[j + 1] = _array[j];
 			j = j - 1;
 		}
+
 		_array[j + 1] = key;
 	}
 }
@@ -225,26 +224,24 @@ void iSort::InsertSort(int* _array, int _arrayLength)
 /// <param name="_arrayLength"></param>
 void iSort::SelectionSort(int* _array, int _arrayLength)
 {
-	int i = NULL;
-	int j = NULL;
-	int min_idx = NULL;
+	int minIndex = NULL;
 
-	// One by one move boundary of unsorted subarray
-	for (i = 0; i < _arrayLength - 1; i++)
+	// One By One Move Boundary Of Unsorted Subarray
+	for (int i = 0; i < _arrayLength - 1; i++)
 	{
-		min_idx = i;
+		minIndex = i;
 
-		// Find the minimum element in unsorted array
-		for (j = i + 1; j < _arrayLength; j++)
+		// Find The Minimum Element In Unsorted Array
+		for (int j = i + 1; j < _arrayLength; j++)
 		{
-			if (_array[j] < _array[min_idx])
+			if (_array[j] < _array[minIndex])
 			{
-				min_idx = j;
+				minIndex = j;
 			}
 		}
 
-		// Swap the found minimum element with the first element
-		Swap(&_array[min_idx], &_array[i]);
+		// Swap The Found Minimum Element With The First Element
+		Swap(&_array[minIndex], &_array[i]);
 	}
 }
 
@@ -256,13 +253,9 @@ void iSort::SelectionSort(int* _array, int _arrayLength)
 /// <param name="_arrayLength"></param>
 void iSort::BubbleSort(int* _array, int _arrayLength)
 {
-	int i = NULL;
-	int j = NULL;
-
-	for (i = 0; i < _arrayLength - 1; i++)
+	for (int i = 0; i < _arrayLength - 1; i++)
 	{
-		// Last i elements are already in place 
-		for (j = 0; j < _arrayLength - i - 1; j++)
+		for (int j = 0; j < _arrayLength - i - 1; j++)
 		{
 			if (_array[j] > _array[j + 1])
 			{

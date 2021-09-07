@@ -11,6 +11,8 @@
 // Mail : william.inman@mds.ac.nz
 //
 
+#pragma warning( disable : 26812) // "Prefer Enum Class" :P
+
 #pragma once
 #ifndef _NODE_H__
 #define _NODE_H__

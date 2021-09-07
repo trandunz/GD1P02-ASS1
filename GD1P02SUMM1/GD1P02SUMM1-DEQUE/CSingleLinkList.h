@@ -11,9 +11,15 @@
 // Mail : william.inman@mds.ac.nz
 //
 
+#pragma warning( disable : 26812) // "Prefer Enum Class" :P
+
 #pragma once
 #ifndef _SINGLE_LINKEDLIST_H__
 #define _SINGLE_LINKEDLIST_H__
+
+// Non-Local Includes
+#include <time.h>
+#include <stdlib.h>
 
 // Local Includes
 #include "CNode.h"
